@@ -1,8 +1,11 @@
 package dataForCollection
+
+import java.io.Serializable
+
 /**
  * Перечисление возможных типов топлива для транспортных средств.
  */
-enum class FuelType {
+enum class FuelType : Serializable {
     /** Бензин */
     GASOLINE,
     /** Дизель */
@@ -10,5 +13,9 @@ enum class FuelType {
     /** Ядерное топливо */
     NUCLEAR,
     /** Антивещество */
-    ANTIMATTER
+    ANTIMATTER;
+
+    companion object {
+        private const val serialVersionUID: Long = 1L
+    }
 }

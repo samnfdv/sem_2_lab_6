@@ -1,4 +1,4 @@
-
+package org.example.dataForCollection
 /**
  * Генератор уникальных идентификаторов в стиле Snowflake.
  *

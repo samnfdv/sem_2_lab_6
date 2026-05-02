@@ -32,6 +32,7 @@ class Response : Serializable {
         this.message = message
     }
 
+
     /** Сообщение, успех/неудача и дополнительные данные  */
     constructor(success: Boolean, message: String?, data: Any?) {
         this.isSuccess = success

@@ -1,23 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-<Appenders>
-    <!-- Отключаем консольный аппендер, комментируя его -->
-    <!-- <Console name="Console" target="SYSTEM_OUT">
-        <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %msg%n" />
-    </Console> -->
+    <Appenders>
+        <File name="File" fileName="logs/appServer.log" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%p] %c{1} - %msg%n" />
+        </File>
+    </Appenders>
 
-    <!-- Файловый аппендер для записи логов в файл -->
-    <File name="File" fileName="logs/app.log" append="false">
-        <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %msg%n" />
-    </File>
-</Appenders>
-
-<Loggers>
-    <Root level="debug">
-        <!-- Убираем ссылку на Console аппендер -->
-        <!-- <AppenderRef ref="Console" /> -->
-        <AppenderRef ref="File" />
-    </Root>
-</Loggers>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
 </Configuration>
-

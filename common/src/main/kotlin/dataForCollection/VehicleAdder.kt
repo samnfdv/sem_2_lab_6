@@ -1,10 +1,13 @@
-package dataForCollection
+package org.example
 
 
+import dataForCollection.Coordinates
+import dataForCollection.*
 import outerLayer.InputManager
 import outerLayer.OutputManager
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.example.dataForCollection.VehicleArgsPack
 
 /**
  * Класс, отвечающий за запрос и валидацию данных для создания объектов [Vehicle].
@@ -266,11 +269,13 @@ class VehicleAdder(
 
                 "ship" -> {
                     LOGGER.info("The vehicleType = SHIP was read")
-                    VehicleType.SHIP}
+                    VehicleType.SHIP
+                }
 
                 else -> {
                     LOGGER.info("The vehicleType = null was read")
-                    null}
+                    null
+                }
             }
         }
         if (inputManager.isScriptMode()) {
@@ -346,6 +351,21 @@ class VehicleAdder(
 
             }
         }
+    }
+
+    fun vehiclePack(): VehicleArgsPack {
+val login = ""
+        val name = validName()
+        val coordinates: Coordinates = validCoordinates()
+        val engnePower = validEnginePower()
+        val numberOfWheels = validNumberOfWheels()
+        val vechicletype:VehicleType? = validVehicleType()
+        val fuelType : FuelType?= validFuelType()
+        val vechicle: VehicleArgsPack =
+            VehicleArgsPack(login, name,coordinates, engnePower, numberOfWheels, vechicletype, fuelType)
+        outputManager.println("Объект отправлен на сервер")
+        return vechicle
+
     }
 
 }

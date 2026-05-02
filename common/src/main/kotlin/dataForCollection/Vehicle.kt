@@ -1,14 +1,15 @@
-package dataForCollection
-
-
-import SnowflakeIdGenerator
-
+package org.example.dataForCollection
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import dataForCollection.Coordinates
+import dataForCollection.FuelType
+import dataForCollection.VehicleType
+import java.io.Serializable
 import java.time.ZonedDateTime
+
 /**
  * Класс, представляющий транспортное средство.
  * Используется в коллекции и сериализуется через Jackson.
@@ -25,12 +26,15 @@ import java.time.ZonedDateTime
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Vehicle @JsonCreator constructor(
     @JsonProperty("id")
-    val id: Long,//Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть
+    var id: Long,//Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть
     // уникальным, Значение этого поля должно генерироваться автоматически
+
 
     @JsonProperty("creationDate")
     val creationDate: ZonedDateTime,//Поле не может быть null, Значение этого поля должно генерироваться автоматически
 
+    @JsonProperty("user_login")
+    var userLogin: String,
 
     @JsonProperty("name")
     var name: String,  //Поле не может быть null, Строка не может быть пустой
@@ -49,18 +53,24 @@ data class Vehicle @JsonCreator constructor(
 
     @JsonProperty("fuelType")
     var fuelType: FuelType?//Поле может быть null
-) : Comparable<Vehicle> {
+) : Comparable<Vehicle>, Serializable {
 
+    // Рекомендуется добавить serialVersionUID для контроля версий сериализации
     companion object {
+        @JsonIgnore
+        private const val serialVersionUID: Long = 1L
+
         /**
          * Генератор уникальных ID на основе Snowflake.
          */
         @JsonIgnore
         private val IDGENERATOR = SnowflakeIdGenerator(1)
+
         /**
          * Создаёт новый объект [Vehicle] с автогенерацией id и даты создания.
          */
         fun createNew(
+            userLogin: String,
             name: String,
             coordinates: Coordinates,
             enginePower: Long,
@@ -71,6 +81,7 @@ data class Vehicle @JsonCreator constructor(
             return Vehicle(
                 id = IDGENERATOR.nextId(),
                 creationDate = ZonedDateTime.now(),
+                userLogin = userLogin,
                 name = name,
                 coordinates = coordinates,
                 enginePower = enginePower,

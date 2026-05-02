@@ -3,6 +3,7 @@ package org.example
 
 import dataForCollection.Coordinates
 import dataForCollection.*
+
 import outerLayer.InputManager
 import outerLayer.OutputManager
 import org.apache.logging.log4j.LogManager
@@ -355,6 +356,7 @@ class VehicleAdder(
 
     fun vehiclePack(): VehicleArgsPack {
 
+        val login = ClientApp.user.login as String
         val name = validName()
         val coordinates: Coordinates = validCoordinates()
         val engnePower = validEnginePower()
@@ -362,7 +364,7 @@ class VehicleAdder(
         val vechicletype:VehicleType? = validVehicleType()
         val fuelType : FuelType?= validFuelType()
         val vechicle: VehicleArgsPack =
-            VehicleArgsPack(name, coordinates, engnePower, numberOfWheels, vechicletype, fuelType)
+            VehicleArgsPack(login, name, coordinates, engnePower, numberOfWheels, vechicletype, fuelType)
         outputManager.println("Объект отправлен на сервер")
         return vechicle
 
