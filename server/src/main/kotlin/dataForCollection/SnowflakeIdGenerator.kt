@@ -20,7 +20,6 @@ class SnowflakeIdGenerator(private val nodeId: Long) {
         private const val NODE_ID_BITS = 10L
         private const val SEQUENCE_BITS = 12L
 
-//        private const val MAX_NODE_ID = (1L shl NODE_ID_BITS.toInt()) - 1
         private const val MAX_SEQUENCE = (1L shl SEQUENCE_BITS.toInt()) - 1
 
         private const val TIMESTAMP_SHIFT = NODE_ID_BITS + SEQUENCE_BITS

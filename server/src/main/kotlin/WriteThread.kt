@@ -38,8 +38,6 @@ class WriteThread(
                     }
 
                     LOGGER.info("Ответ отправлен ${serverApp.getRemoteAddress(clientChannel)}")
-//                    key.interestOps(SelectionKey.OP_READ)
-//                    key.attach(ServerApp.ClientState())
                     serverApp.finishWrite(key)
                 }
             }

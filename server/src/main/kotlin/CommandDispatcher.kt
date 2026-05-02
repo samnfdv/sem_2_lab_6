@@ -36,8 +36,6 @@ class CommandDispatcher(
      */
     fun dispatch(request: Request): Response {
         val type = request.type
-//        val rawArgs = request.args as Array<Any>
-//        val args = rawArgs ?: emptyArray<Any>()
         val args = (request.args as? Array<Any>) ?: emptyArray()
 
         var message: String?
